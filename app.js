@@ -69,6 +69,9 @@ app.post("/listings",
      wrapAsync(async (req,res,next) => {
     let result = listingSchema.validate(req.body);
     console.log(result);
+    if(result.error){
+        throw new ExpressError(400 , result.error);
+    }
         // let{title,description,image,price,country,location} = req.body;
     const newListing = new Listing (req.body.listing);
 
