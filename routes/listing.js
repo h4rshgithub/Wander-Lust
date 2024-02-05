@@ -8,8 +8,6 @@ const {isLoggedIn} = require("../middleware.js");
 const {isOwner} = require("../middleware.js");
 const {validateListing} = require("../middleware.js");
 
-
-
 //Index Route
 
 router.get("/", async (req,res) => {
@@ -29,7 +27,7 @@ router.get("/new",isLoggedIn, (req ,res) => {
 
 router.get("/:id", async  (req,res) => {
     let {id} = req.params;
-     const listing = await Listing.findById(id).populate("reviews").populate("owner");
+     const listing = await Listing.findById(id).populate({path : "reviews",populate : { path : "author"},}).populate("owner");
      if(!listing){
         req.flash("error","Listing you requested for does not exist!");
         res.redirect("/listings");
