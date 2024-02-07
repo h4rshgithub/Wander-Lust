@@ -37,9 +37,23 @@
         <% if(currUser ) {%>
         <h4>Please rate us!</h4>
         <form action="/listings/<%= listing.id %>/reviews" method="POST" novalidate class="needs-validation">
+        
             <div class="mb-3 mt-3">
                 <label for="rating" class="form-label">Rating</label>
-                <input type="range" min="1" max="5" id="rating " name="review[rating]" class="form-range">
+            <fieldset class="starability-coinFlip">
+                
+                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+              </fieldset>
             </div>
 
             <div class="mb-3 mt-3">
@@ -59,8 +73,9 @@
         <div class="card col-5 ms-3 mb-3">
             <div class="card-body">
                 <h5 class="card-title">@<%= review.author.username %></h5>
+                <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
                 <p class="card-text"><%= review.comment %></p>
-                <p class="card-text"><%= review.rating %>&#11088;</p>
+                
             
                <form class="mb-3 mt-1" method="POST" action="/listings/<%=listing._id %>/reviews/<%=review._id %>?_method=DELETE">
                 <button class="btn btn-sm btn-dark">Delete</button>
