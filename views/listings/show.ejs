@@ -1,7 +1,5 @@
 <% layout("/layouts/boilerplate.ejs") %>
-<script>
-    const mapToken = "<%= process.env.MAP_TOKEN %>";
-</script>
+
 <div class="row mt-3">
     <div class="col-8 offset-3">  
     <h3><%= listing.title %> </h3>
@@ -70,8 +68,6 @@
       <% } %>
       <br>
       <% if(listing.reviews.length > 0 ) { %>
-
-     
     <div class="row">
         <p><b> All Reviews </b></p>
        <% for(review of listing.reviews) { %>
@@ -100,4 +96,14 @@
     </div>
 
 </div>
-<script src="/js/map.js"></script>
+<script>
+    let mapToken = "<%=process.env.MAP_TOKEN%>";
+	mapboxgl.accessToken = mapToken;
+const map = new mapboxgl.Map({
+   container: 'map', // container ID
+     center: [80.9462, 26.8467], // starting position [lng, lat]
+     style: 'mapbox://styles/mapbox/streets-v9', 
+     zoom: 9 // starting zoom
+});
+
+</script>
