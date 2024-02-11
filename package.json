@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "18.17.1"
+  },
   "name": "major-project",
   "version": "1.0.0",
   "description": "",
@@ -14,6 +17,7 @@
     "@maptiler/client": "^1.8.0",
     "cloudinary": "^2.0.0",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^5.1.0",
     "dotenv": "^16.4.1",
     "ejs": "^3.1.9",
     "ejs-mate": "^4.0.0",
